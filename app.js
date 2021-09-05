@@ -25,7 +25,7 @@ mongoose.connect('mongodb://stalin:Stalin123@ds026558.mlab.com:26558/cerulean', 
 .catch(err => console.log('Error occured while connecting to database..'));
 */
 
-mongoose.connect('mongodb+srv://stalin:stalindb@cluster0.3wp1r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser: true})
+mongoose.connect('mongodb+srv://stalin:stalindb@cluster0.3wp1r.mongodb.net/test', {useNewUrlParser: true})
 .then(()=> console.log('Database connected..'))
 .catch(err => console.log('Error occured while connecting to database..'));
 

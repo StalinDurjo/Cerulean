@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+
+<div class="col-lg-6 offset-3">
+    <form action="/posts/edit/<%= post._id %>?_method=PUT" method="POST" class="bg-light p-3 rounded shadow-sm">
+        <h5 class="mb-3"><u>Edit Post: <%= post.post_title %></u></h5>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" placeholder="Enter Title" name="post_title" value="<%= post.post_title %>">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" placeholder="Enter Description" name="post_description"></textarea>
+            </div>
+        <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+    </form>
+</div>
+<% include ../partials/footer %>

@@ -1,0 +1,103 @@
+<% include ../partials/header %>
+
+<div class="col-lg-8 offset-2 mb-5">
+    <%if(currentUser && currentUser._id.equals(user._id)){%>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active text-dark" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="home" aria-selected="true">Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="edit-tab" data-toggle="tab" href="#edit" role="tab" aria-controls="profile" aria-selected="false">Edit</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="password-tab" data-toggle="tab" href="#password" role="tab" aria-controls="contact" aria-selected="false">Password</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="false">Image</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="card shadow-sm main-profile p-4 text-center">
+                <img src="/uploads/<%= user.user_profile_image %>" class="card-img-top main-profile-img shadow" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><%= user.name %></h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo accusantium vitae in atque placeat non voluptas veniam sapiente enim quaerat laboriosam adipisci, quis ipsum repellendus architecto obcaecati et doloremque est.</p>
+                    
+                    <hr>
+                    <div class="details text-left mt-4">
+                        <h4><u>Information</u></h4>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Name</strong>: <%= user.name %></li>
+                            <li class="list-group-item"><strong>Username</strong>: <%= user.username %></li>
+                            <li class="list-group-item"><strong>Email</strong>: <%= user.email %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="edit" role="tabpanel" aria-labelledby="edit-tab">
+            <form action="/profile/<%= user._id %>?_method=PUT" method="POST" class="bg-light p-3 rounded shadow-sm">
+                <h5 class="mb-3"><u>Edit user</u></h5>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" value="<%= user.name %>" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" value="<%= user.username %>" name="username">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="text" class="form-control" value="<%= user.email %>" name="email">
+                    </div>
+                <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+            <form action="/profile/<%= user._id %>/password?_method=PUT" method="POST" class="bg-light p-3 rounded shadow-sm">
+                <h5 class="mb-3"><u>Edit user</u></h5>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" class="form-control" name="password">
+                    </div>
+                <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
+            <form action="/profile/<%= user._id %>/image?_method=PUT" method="POST" enctype="multipart/form-data" class="bg-light p-3 rounded shadow-sm">
+                <h5 class="mb-3"><u>Change image</u></h5>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileId" name="user_profile_image">
+                                <label class="custom-file-label" for="fileId">Choose file</label>
+                        </div>
+                    </div>
+                <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+            </form>
+        </div>
+    </div>
+    <%}else{%>
+        <div class="card shadow-sm main-profile p-4 text-center">
+            <img src="/uploads/<%= user.user_profile_image %>" class="card-img-top main-profile-img shadow" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= user.name %></h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo accusantium vitae in atque placeat non voluptas veniam sapiente enim quaerat laboriosam adipisci, quis ipsum repellendus architecto obcaecati et doloremque est.</p>
+                
+                <hr>
+                <div class="details text-left mt-4">
+                    <h4><u>Information</u></h4>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Name</strong>: <%= user.name %></li>
+                        <li class="list-group-item"><strong>Username</strong>: <%= user.username %></li>
+                        <li class="list-group-item"><strong>Email</strong>: <%= user.email %></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <%}%>
+</div>
+<% include ../partials/footer %>

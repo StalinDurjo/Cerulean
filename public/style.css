@@ -1,0 +1,76 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+    background: #e9ebee !important;
+    margin-top: 95px;
+}
+
+.info{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    padding: 6px;
+    width: 100%;
+}
+
+.navbar{
+    top: 30px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    background: #3b5998 !important;
+}
+
+.home-profile{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.home-profile img{
+    border-radius: 50%;
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.home-profile-body{
+    text-align: center;
+}
+
+.main-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-profile-img{
+    border-radius: 5px;
+    width: 200px !important;
+}
+
+.pos-relative{
+    position: relative;
+}
+
+.post-profile-circle{
+    height: 30px;
+    width: 30px;
+    border-radius: 50% !important;
+}
+
+.card-fixed{
+    position: fixed;
+    width: 19%;
+}
+
+.profile-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-profile-image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}

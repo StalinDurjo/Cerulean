@@ -1,0 +1,80 @@
+<% include ../partials/header %>
+
+<div class="col-lg-3">
+    <div class="card-fixed">
+        <div class="card shadow-sm profile-card pt-3">
+            <img class="card-img-top card-profile-image" src="/uploads/<%= postedBy.user_profile_image %>" alt="Card image cap">
+            <div class="card-body text-center">
+                <h4><%= postedBy.name %></h4>
+                <p class="card-text">Some quick example text to build on the card title.</p>
+            </div>
+        </div> 
+
+        <div class="lists mt-4">
+            <h5><strong><u>Pages</u></strong></h5>
+            <li class="list-group-item my-1 py-2 shadow-sm">
+                <a href="/profile/<%= postedBy._id %>" class="text-dark"><strong>Profile</strong></a>
+            </li>
+            <li class="list-group-item my-1 py-2 shadow-sm">
+                <a href="/about" class="text-dark"><strong>About</strong></a>
+            </li>
+            <li class="list-group-item my-1 py-2 shadow-sm">
+                <a href="/contact" class="text-dark"><strong>Contact</strong></a>
+            </li>
+        </div>
+    </div>   
+</div>
+
+<div class="col-lg-8">
+    <div class="card shadow-sm">
+        <div class="card-header d-flex">
+            <div class="media">
+                <img class="rounded post-profile-circle" src="/uploads/<%= postedBy.user_profile_image %>" width="40" alt="Generic placeholder image">
+            </div>
+            <h5 class="mt-1 mb-0 ml-2"><a href="/profile/<%= postedBy._id %>" class="text-dark"><%= postedBy.name %></a></h5>
+        </div>
+        <img class="card-img-top" src="/uploads/<%= post.post_image %>" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title mb-1"><%= post.post_title %></h4>
+            <small>Created at <%= post.post_created.toDateString() %></small>
+            <p class="card-text mt-1"><%= post.post_description %></p>
+            <hr>
+            <% if(currentUser && currentUser._id.equals(post.post_author.id)){%>
+            <a href="/posts/edit/<%= post._id %>" class="btn btn-info btn-sm">Edit</a>
+            <form action="/posts/<%= post._id %>?_method=DELETE" method="POST" class="d-inline">
+                <button class="btn btn-primary btn-sm">Delete</button>
+            </form>
+            <%}%>
+            <a href="/posts/<%= post._id %>/comments/add" class="btn btn-success btn-sm float-right">Comment</a>
+        </div>
+    </div>
+
+    <!-- Comment -->
+    <div class="card shadow-sm p-3 mt-2 mb-5">
+        <h5><u><strong>Comments</strong></u></h5>
+        <hr class="mt-1">
+        
+        <% post.post_comments.forEach((comment => {%>
+        <div class="media">
+            <img class="mr-3 rounded" src="/uploads/<%= comment.comment_author.user_image %>" width="60" alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0 mb-1"><%= comment.comment_author.username %></h5>
+                <small>Created at <%= comment.comment_created.toDateString() %></small>
+                <p class="mt-1 mb-0"><%= comment.comment_text %></p>
+                <% if(currentUser && currentUser._id.equals(comment.comment_author.id)){%>
+                <hr class="mb-2">
+                <a href="/posts/<%= post._id %>/comments/<%= comment._id %>/edit" class="btn btn-info btn-sm">Edit</a>
+                <form action="/posts/<%= post._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST" class="d-inline">
+                    <button class="btn btn-primary btn-sm">Delete</button>
+                </form>
+                <%}%>
+            </div>
+          </div>
+          <hr>
+          <%}))%>
+    </div>
+</div>
+
+<div class="col-lg-1"></div>
+
+<% include ../partials/footer %>

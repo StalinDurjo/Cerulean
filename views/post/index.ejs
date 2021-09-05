@@ -1,0 +1,55 @@
+<% include ../partials/header %>
+
+<div class="col-lg-3">
+    <div class="card-fixed">
+        <div class="card shadow-sm profile-card pt-3">
+            <img class="card-img-top card-profile-image" src="/uploads/<%= (currentUser)? currentUser.user_profile_image: '' %>" alt="Card image cap">
+            <div class="card-body text-center">
+                <h4><%= (currentUser)? currentUser.name : '' %></h4>
+                <p class="card-text">Some quick example text to build on the card title.</p>
+                <div>
+                    <a href="/posts/add" class="btn btn-dark btn-sm mr-1">Add post</a>
+                    <a href="/profile/<%= (currentUser)? currentUser._id : '' %>" class="btn btn-dark btn-sm mr-1">Profile</a>
+                    <a href="/logout" class="btn btn-dark btn-sm mr-0">Logout</a>
+                </div>
+            </div>
+        </div> 
+
+        <div class="lists mt-4">
+            <h5><strong><u>Pages</u></strong></h5>
+            <li class="list-group-item my-1 py-2 shadow-sm">
+                <a href="/about" class="text-dark"><strong>About</strong></a>
+            </li>
+            <li class="list-group-item my-1 py-2 shadow-sm">
+                <a href="/contact" class="text-dark"><strong>Contact</strong></a>
+            </li>
+        </div>
+    </div>   
+</div>
+
+<div class="col-lg-8">
+    <% posts.forEach((post)=> {%>
+    <div class="card p-2 shadow-sm mb-2">
+        <div class="media">
+            <img class="mr-3 rounded" src="/uploads/<%= post.post_image %>" width="80" alt="Generic placeholder image">
+            <div class="media-body">
+                <h5 class="mt-0"><%= post.post_title %></h5>
+                <div class="">
+                    Created at 
+                    <small><%= post.post_created.toDateString() %> by </small> 
+                    <small><strong><%= post.post_author.name %></strong></small>
+                </div>
+                <p class="mb-0"><%= post.post_description.substring(0, 250) %></p>
+            </div>
+        </div>
+        <hr>
+        <div>
+            <a href="/posts/show/<%= post._id %>" class="btn btn-sm btn-dark">View Full Post</a>
+        </div>
+    </div>
+    <%})%>
+</div>
+
+<div class="col-lg-1"></div>
+
+<% include ../partials/footer %>

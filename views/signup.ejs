@@ -1,0 +1,46 @@
+<% include partials/header %>
+
+<div class="col-lg-6 offset-3">
+    <% if(errors.length > 0){%>
+    <div class="bg-primary text-white my-1 shadow-sm p-3 rounded">
+        <% errors.forEach(err =>{%>
+            <p class="my-1"><strong><%= err.msg %></strong></p>
+        <%})%>
+    </div>
+    <%}%>
+    <form action="/signup" method="POST" enctype="multipart/form-data" class="bg-light p-3 rounded shadow-sm">
+        <h5 class="mb-3"><u>Signup</u></h5>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Enter name" name="name" value="<%= persistData.name %>">
+            </div>
+            <div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+					</div>
+					<div class="custom-file">
+						<input type="file" class="custom-file-input" id="fileId" name="user_profile_image">
+						<label class="custom-file-label" for="fileId">Choose file</label>
+				</div>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" placeholder="Enter username" name="username" value="<%= persistData.username %>">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" placeholder="Enter email" name="email" value="<%= persistData.email %>">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Enter password" name="password" value="<%= persistData.password %>">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Enter confirm password" name="password_again" value="<%= persistData.password_again %>">
+            </div>
+        <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+    </form>
+</div>
+
+<% include partials/footer %>

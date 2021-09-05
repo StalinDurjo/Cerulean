@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cerulean</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+	<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+	<div class="bg-dark text-light info">Test account - stalin_5, password: 1111 <span class="ml-5"></span> New post or user cannot be added due to some server restrictions</div>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-info shadow-sm py-0">
+		<div class="container">
+			<a class="navbar-brand" href="/"><strong>Cerulean</strong></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="nav">
+				<ul class="navbar-nav ml-auto">
+					<%if(currentUser){%>
+					<li class="nav-item">
+						<a class="nav-link" href="/posts">Home</a>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<div class="media">
+								<img class="rounded" src="/uploads/<%= currentUser.user_profile_image %>" width="40" height="20" alt="Generic placeholder image">
+							</div>
+						</a>
+						<div class="dropdown-menu shadow" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="/profile/<%= currentUser._id %>">Profile</a>
+							<a class="dropdown-item" href="/about">About</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="/contact">Contact</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/logout">Logout</a>
+					</li>
+					<%}else{%>
+					<li class="nav-item">
+						<a class="nav-link" href="/login">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/signup">Signup</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/about">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/contact">Contact</a>
+					</li>
+					<%}%>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+
+    <div class="container mt-3">
+        
+        <% if(error && error.length > 0){%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong><%= error %></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <%}%>
+        <% if(success && success.length > 0){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong><%= success %></strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <%}%>
+
+		<div class="row">

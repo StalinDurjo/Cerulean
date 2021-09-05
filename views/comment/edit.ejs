@@ -1,0 +1,14 @@
+<% include ../partials/header %>
+
+<div class="col-lg-6 offset-3">
+    <form action="/posts/<%= post_id %>/comments/<%= comment._id%>?_method=PUT" method="POST" class="bg-light p-3 rounded shadow-sm">
+        <h5 class="mb-3"><u>Edit Comment</u></h5>
+            <div class="form-group">
+                <label>Comment</label>
+                <input type="text" class="form-control" placeholder="Enter Comment" name="comment_text" value="<%= comment.comment_text %>">
+            </div>
+        <button type="submit" class="btn btn-dark btn-sm">Submit</button>
+    </form>
+</div>
+
+<% include ../partials/footer %>
